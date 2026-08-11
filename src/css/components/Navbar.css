@@ -1,0 +1,379 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-container {
+    max-width: 1300px;
+    height: 72px;
+
+    margin: 0 auto;
+    padding: 0 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.navbar-logo {
+    margin: 0;
+
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+
+    color: #4f46e5;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.navbar-logo:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   MENU DESKTOP
+========================= */
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.navbar-menu button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #374151;
+
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.navbar-menu button img {
+    width: 19px;
+    height: 19px;
+
+    object-fit: contain;
+}
+
+.navbar-menu button:hover {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.navbar-menu button.active {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.navbar-menu .create-btn {
+    margin-left: 5px;
+
+    background: #4f46e5;
+    color: white;
+
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.navbar-menu .create-btn:hover {
+    background: #4338ca;
+    color: white;
+
+    transform: translateY(-1px);
+}
+
+/* =========================
+   LOGOUT DESKTOP
+========================= */
+
+.navbar-menu .logout-btn {
+    margin-left: 4px;
+
+    color: #dc2626;
+}
+
+.navbar-menu .logout-btn:hover {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+/* =========================
+   HAMBURGUER
+========================= */
+
+.hamburger {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    transition: background 0.2s ease;
+}
+
+.hamburger:hover {
+    background: #f3f4f6;
+}
+
+.hamburger span {
+    width: 22px;
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: #374151;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.2s ease;
+}
+
+/* Animação para X */
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1001;
+
+    background: rgba(15, 23, 42, 0.35);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.menu-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================
+   MENU MOBILE
+========================= */
+
+.mobile-menu {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    z-index: 1002;
+
+    width: min(320px, 85vw);
+    height: 100vh;
+
+    padding: 90px 20px 25px;
+
+    background: white;
+
+    box-shadow: -10px 0 35px rgba(0, 0, 0, 0.12);
+
+    transform: translateX(100%);
+
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+.mobile-menu-header {
+    padding: 0 10px 15px;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    color: #9ca3af;
+}
+
+.mobile-menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mobile-menu-items button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 14px 13px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: transparent;
+
+    color: #374151;
+
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.mobile-menu-items button img {
+    width: 21px;
+    height: 21px;
+
+    object-fit: contain;
+}
+
+.mobile-menu-items button:hover,
+.mobile-menu-items button.active {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+/* Criar anúncio */
+
+.mobile-menu-items .create-btn {
+    margin-top: 5px;
+
+    background: #4f46e5;
+    color: white;
+
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.2);
+}
+
+.mobile-menu-items .create-btn:hover {
+    background: #4338ca;
+    color: white;
+}
+
+/* Separador */
+
+.mobile-menu-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 12px 0;
+
+    background: #e5e7eb;
+}
+
+/* Logout */
+
+.mobile-menu-items .mobile-logout {
+    color: #dc2626;
+}
+
+.mobile-menu-items .mobile-logout:hover {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+/* =========================
+   TABLET / MOBILE
+========================= */
+
+@media (max-width: 900px) {
+    .navbar-container {
+        height: 64px;
+        padding: 0 18px;
+    }
+
+    .navbar-menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar-logo {
+        font-size: 1.75rem;
+    }
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0 15px;
+    }
+
+    .mobile-menu {
+        width: 85vw;
+    }
+}
