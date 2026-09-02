@@ -1,0 +1,123 @@
+.complete-profile-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #f5f7fb;
+    box-sizing: border-box;
+}
+
+.complete-profile-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+.complete-profile-card h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    color: #1f2937;
+}
+
+.complete-profile-subtitle {
+    margin: 0 0 30px;
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.complete-profile-input-group {
+    margin-bottom: 18px;
+}
+
+.complete-profile-input-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.complete-profile-input-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.complete-profile-input-group input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.complete-profile-input-group input::placeholder {
+    color: #9ca3af;
+}
+
+.cep-status {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.cep-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #dc2626;
+}
+
+.complete-profile-button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        transform 0.1s;
+}
+
+.complete-profile-button:hover:not(:disabled) {
+    background: #4338ca;
+}
+
+.complete-profile-button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.complete-profile-button:disabled {
+    background: #a5b4fc;
+    cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    .complete-profile-container {
+        padding: 15px;
+    }
+
+    .complete-profile-card {
+        padding: 25px 20px;
+    }
+
+    .complete-profile-card h1 {
+        font-size: 24px;
+    }
+}

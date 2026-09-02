@@ -21,17 +21,11 @@ body {
 .login-card {
     width: 100%;
     max-width: 430px;
-
     padding: 45px;
-
     border-radius: 24px;
-
     background: rgba(255, 255, 255, 0.95);
-
     backdrop-filter: blur(15px);
-
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
-
     animation: fadeUp 0.6s ease;
 }
 
@@ -62,6 +56,7 @@ body {
 }
 
 .input-group input {
+    width: 100%;
     height: 52px;
 
     border: 1px solid #ddd;
@@ -71,9 +66,9 @@ body {
 
     font-size: 15px;
 
-    transition: 0.25s;
-
     outline: none;
+
+    transition: 0.25s;
 }
 
 .input-group input:focus {
@@ -86,9 +81,12 @@ body {
     background: transparent;
 
     margin-top: -5px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+
+    padding: 0;
 
     color: #4f46e5;
+
     cursor: pointer;
 
     font-size: 0.9rem;
@@ -98,6 +96,15 @@ body {
 
 .show-password:hover {
     color: #312e81;
+}
+
+.login-error {
+    margin-bottom: 15px;
+
+    color: #dc2626;
+
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 .login-btn {
@@ -119,9 +126,14 @@ body {
     transition: 0.25s;
 }
 
-.login-btn:hover {
+.login-btn:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 12px 25px rgba(79, 70, 229, 0.35);
+}
+
+.login-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 .divider {
@@ -141,7 +153,9 @@ body {
 
 .divider span {
     margin: 0 15px;
+
     color: #777;
+
     font-size: 0.9rem;
 }
 
@@ -150,7 +164,6 @@ body {
     height: 54px;
 
     border-radius: 14px;
-
     border: 1px solid #ddd;
 
     background: white;
@@ -168,11 +181,43 @@ body {
     transform: translateY(-2px);
 }
 
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    margin-top: 25px;
+
+    color: #666;
+    font-size: 14px;
+}
+
+.signup-btn {
+    border: none;
+    background: transparent;
+
+    padding: 0;
+
+    color: #4f46e5;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.signup-btn:hover {
+    color: #312e81;
+    text-decoration: underline;
+}
+
 @keyframes fadeUp {
     from {
         opacity: 0;
         transform: translateY(25px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

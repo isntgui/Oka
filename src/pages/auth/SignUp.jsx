@@ -1,38 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase, loginGoogle } from "../../lib/supabase";
+import { supabase } from "../../lib/supabase";
 import "../../css/auth/Login.css";
 
-export default function App() {
+export default function SignUp() {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        async function checkSession() {
-            const {
-                data: { session },
-            } = await supabase.auth.getSession();
-
-            if (session) {
-                navigate("/home");
-            }
-        }
-
-        checkSession();
-    }, [navigate]);
-
-    async function handleLogin(e) {
+    async function handleSignUp(e) {
         e.preventDefault();
 
         setError("");
+
+        if (password !== confirmPassword) {
+            setError("As senhas não coincidem.");
+            return;
+        }
+
+        if (password.length < 6) {
+            setError("A senha deve ter pelo menos 6 caracteres.");
+            return;
+        }
+
         setLoading(true);
 
-        const { error } = await supabase.auth.signInWithPassword({
+        const { error } = await supabase.auth.signUp({
             email,
             password,
         });
@@ -40,20 +37,22 @@ export default function App() {
         setLoading(false);
 
         if (error) {
-            setError("Email ou senha incorretos.");
+            setError(error.message);
             return;
         }
 
-        navigate("/home");
+        alert("Conta criada com sucesso!");
+
+        navigate("/");
     }
 
     return (
         <div className="login-container">
             <div className="login-card">
-                <h1>Bem-vindo</h1>
-                <p className="subtitle">Entre para continuar</p>
+                <h1>Criar conta</h1>
+                <p className="subtitle">Cadastre-se para continuar</p>
 
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSignUp}>
                     <div className="input-group">
                         <label>Email</label>
                         <input
@@ -68,7 +67,7 @@ export default function App() {
                     <div className="input-group">
                         <label>Senha</label>
                         <input
-                            type={showPassword ? "text" : "password"}
+                            type="password"
                             placeholder="Digite a sua senha"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -76,13 +75,16 @@ export default function App() {
                         />
                     </div>
 
-                    <button
-                        type="button"
-                        className="show-password"
-                        onClick={() => setShowPassword(!showPassword)}
-                    >
-                        {showPassword ? "Ocultar senha" : "Mostrar senha"}
-                    </button>
+                    <div className="input-group">
+                        <label>Confirmar senha</label>
+                        <input
+                            type="password"
+                            placeholder="Digite a senha novamente"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                    </div>
 
                     {error && <p className="login-error">{error}</p>}
 
@@ -91,26 +93,18 @@ export default function App() {
                         className="login-btn"
                         disabled={loading}
                     >
-                        {loading ? "Entrando..." : "Entrar"}
+                        {loading ? "Criando conta..." : "Criar conta"}
                     </button>
                 </form>
 
-                <div className="divider">
-                    <span>ou</span>
-                </div>
-
-                <button className="google-btn" onClick={loginGoogle}>
-                    Entrar com Google
-                </button>
-
                 <div className="signup-container">
-                    <span>Não tem uma conta?</span>
+                    <span>Já possui uma conta?</span>
 
                     <button
                         className="signup-btn"
-                        onClick={() => navigate("/signup")}
+                        onClick={() => navigate("/")}
                     >
-                        Criar conta
+                        Entrar
                     </button>
                 </div>
             </div>

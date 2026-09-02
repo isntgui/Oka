@@ -7,6 +7,7 @@ import chatIcon from "../assets/chat.svg";
 import logoutIcon from "../assets/logout.svg";
 import adIcon from "../assets/ad.svg";
 import homeIcon from "../assets/home.svg";
+import profileIcon from "../assets/profile.svg";
 
 import "../css/components/Navbar.css";
 
@@ -94,6 +95,18 @@ export default function Navbar() {
                             <span>Criar anúncio</span>
                         </button>
 
+                        {/* Perfil */}
+                        <button
+                            className={
+                                location.pathname === "/profile" ? "active" : ""
+                            }
+                            onClick={() => handleNavigate("/profile")}
+                        >
+                            <img src={profileIcon} alt="" />
+                            <span>Perfil</span>
+                        </button>
+
+                        {/* Sair */}
                         <button className="logout-btn" onClick={handleLogout}>
                             <img src={logoutIcon} alt="" />
                             <span>Sair</span>
@@ -166,6 +179,16 @@ export default function Navbar() {
                     </button>
 
                     <div className="mobile-menu-divider" />
+
+                    <button
+                        className={
+                            location.pathname === "/profile" ? "active" : ""
+                        }
+                        onClick={() => handleNavigate("/profile")}
+                    >
+                        <img src={profileIcon} alt="" />
+                        <span>Perfil</span>
+                    </button>
 
                     <button className="mobile-logout" onClick={handleLogout}>
                         <img src={logoutIcon} alt="" />

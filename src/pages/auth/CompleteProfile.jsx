@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase.js";
+import "../../css/auth/CompleteProfile.css";
 
 export default function CompleteProfile() {
     const navigate = useNavigate();
@@ -109,40 +110,66 @@ export default function CompleteProfile() {
     }
 
     return (
-        <div style={{ maxWidth: 420, margin: "0 auto" }}>
-            <h1>Complete seu perfil</h1>
-            <p>Precisamos dessas informações para continuar</p>
+        <div className="complete-profile-container">
+            <div className="complete-profile-card">
+                <h1>Complete seu perfil</h1>
 
-            {/* CEP */}
-            <div style={{ marginBottom: 10 }}>
-                <input
-                    placeholder="CEP"
-                    value={cep}
-                    onChange={(e) => handleCepChange(e.target.value)}
-                />
+                <p className="complete-profile-subtitle">
+                    Precisamos dessas informações para continuar
+                </p>
 
-                {loadingCep && <small>Buscando endereço...</small>}
+                <div className="complete-profile-input-group">
+                    <label>CEP</label>
 
-                {cepError && <small style={{ color: "red" }}>{cepError}</small>}
+                    <input
+                        type="text"
+                        placeholder="00000-000"
+                        value={cep}
+                        onChange={(e) => handleCepChange(e.target.value)}
+                    />
+
+                    {loadingCep && (
+                        <small className="cep-status">
+                            Buscando endereço...
+                        </small>
+                    )}
+
+                    {cepError && (
+                        <small className="cep-error">{cepError}</small>
+                    )}
+                </div>
+
+                <div className="complete-profile-input-group">
+                    <label>Endereço</label>
+
+                    <input
+                        type="text"
+                        placeholder="Endereço"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                </div>
+
+                <div className="complete-profile-input-group">
+                    <label>Número</label>
+
+                    <input
+                        type="text"
+                        inputMode="numeric"
+                        placeholder="Número"
+                        value={number}
+                        onChange={(e) => setNumber(e.target.value)}
+                    />
+                </div>
+
+                <button
+                    className="complete-profile-button"
+                    onClick={handleSubmit}
+                    disabled={loading || loadingCep}
+                >
+                    {loading ? "Salvando..." : "Salvar"}
+                </button>
             </div>
-
-            {/* Endereço (auto ou editável) */}
-            <input
-                placeholder="Endereço"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-            />
-
-            {/* Número */}
-            <input
-                placeholder="Número"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-            />
-
-            <button onClick={handleSubmit} disabled={loading || loadingCep}>
-                {loading ? "Salvando..." : "Salvar"}
-            </button>
         </div>
     );
 }
