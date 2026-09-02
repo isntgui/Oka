@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase.js";
 import Navbar from "../../components/navbar.jsx";
-import "../../css/home/home.css";
+import "../../css/home/Home.css";
 
 export default function Home() {
     const navigate = useNavigate();
