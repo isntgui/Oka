@@ -15,7 +15,6 @@ export default function CompleteProfile() {
 
     const abortControllerRef = useRef(null);
 
-    // 🔥 debounce CEP (UX profissional)
     useEffect(() => {
         const cleaned = cep.replace(/\D/g, "");
 
@@ -37,7 +36,6 @@ export default function CompleteProfile() {
             setLoadingCep(true);
             setCepError("");
 
-            // cancela request anterior (evita race condition)
             if (abortControllerRef.current) {
                 abortControllerRef.current.abort();
             }
@@ -101,7 +99,6 @@ export default function CompleteProfile() {
         }
     }
 
-    // máscara simples de CEP
     function handleCepChange(value) {
         const cleaned = value.replace(/\D/g, "");
         const formatted = cleaned.replace(/^(\d{5})(\d)/, "$1-$2").slice(0, 9);

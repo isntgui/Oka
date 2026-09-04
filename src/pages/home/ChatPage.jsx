@@ -147,7 +147,6 @@ export default function ChatPage() {
                 prev.map((m) => (m.id === optimistic.id ? data : m)),
             );
 
-            // Atualiza last_message e updated_at na conversa
             await supabase
                 .from("conversations")
                 .update({

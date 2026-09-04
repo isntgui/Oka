@@ -3,7 +3,6 @@ import { supabase } from "./supabase";
 export async function getOrCreateConversation(post, userId) {
     if (!post || !userId) return null;
 
-    // ❌ bloqueia chat com você mesmo
     if (post.owner_id === userId) {
         console.log("não pode criar chat consigo mesmo");
         return null;
